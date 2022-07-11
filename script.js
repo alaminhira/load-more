@@ -27,9 +27,14 @@ const LoadMoreItems = async function (showMore) {
     items.forEach(item => {
         gridContainer.insertAdjacentHTML(
             'beforeend',
-            `<div class="grid__item">${item}</div>`
+            `<div class="grid__item showing">${item}</div>`
         )
     })
+    
+    setTimeout(() =>  {
+        const items = gridContainer.querySelectorAll('.grid__item.showing');
+        items.forEach(item => item.classList.remove('showing'));
+    }, 500);
 
     if (loadedItems.length !== data.length) return;
 
@@ -48,6 +53,11 @@ const LoadLessItems = function () {
     } else {
         removedItems = loadedItems.splice(loadedItems.length - 3, 3);
     }
+
+    // setTimeout(() =>  {
+    //     const items = gridContainer.querySelectorAll('.grid__item.hidden');
+    //     items.forEach(item => item.classList.remove('hidden'));
+    // }, 500);
 
     removedItems.forEach(item => gridContainer.lastChild.remove());
 
