@@ -13,7 +13,6 @@
 .grid__container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
 }
 
 .grid__item {
@@ -22,19 +21,21 @@
     color: #fff;
     font-size: 1.25rem;
     padding: 1.5rem;
+    margin: .8rem;
     transition: all .2s ease-in-out;
 }
 
 .grid__item.showing {
-    /* position: absolute; */
     height: 0;
     padding: 0;
+    margin: 0;
     visibility: hidden;
 }
 
 .grid__item.hiding {
     height: 0;
     padding: 0;
+    margin: 0;
 }
 
 .grid__btn {
@@ -46,8 +47,15 @@
     cursor: pointer;
 }
 
+.grid__btn.less,
 .grid__btn:hover {
     background: transparent;
     color: #000;
     border-color: orangered;
+}
+
+.grid__btn.less:hover {
+    background: orangered;
+    color: #fff;
+    border-color: transparent;
 }

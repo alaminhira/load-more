@@ -39,6 +39,7 @@ const LoadMoreItems = async function (showMore) {
     if (loadedItems.length !== data.length) return;
 
     btnGrid.textContent = 'See Less';
+    btnGrid.classList.add('less');
     loadMore = !loadMore;
 }
 LoadMoreItems();
@@ -54,7 +55,6 @@ const LoadLessItems = function () {
         removedItems = loadedItems.splice(loadedItems.length - 3, 3);
     }
 
-    console.log(removedItems)
     
     const removedEls = removedItems.map((_, i) => gridContainer.querySelector(`.grid__item:nth-last-child(${i + 1})`));
     removedEls.forEach(el => el.classList.add('hiding'));
@@ -63,18 +63,17 @@ const LoadLessItems = function () {
         removedEls.forEach(el => el.classList.remove('hiding'));
         removedEls.forEach(_ => gridContainer.lastChild.remove());
     }, 700);
-    // const removedEls = removedItems.map(item => );
-    console.log(removedEls)
     
 
     if (loadedItems.length === initItemCount) {
         btnGrid.textContent = 'Load More';
+        btnGrid.classList.remove('less');
         loadMore = !loadMore;
     }
 }
 
-const processItems = function () {
+const handleLoading = function () {
     loadMore ? LoadMoreItems(loadMore) : LoadLessItems();
 }
 
-btnGrid.addEventListener('click', processItems);
+btnGrid.addEventListener('click', handleLoading);
